@@ -1,8 +1,8 @@
-# Since I won't be needing all the data, I'll just import the rows I'm interested in.
-# First I read jsut the fir colunm
 # IMPORTANT: the data is not in the git repo, so this code won't run unless you manually
 # place the file into the working directory
 
+# Since I won't be needing all the data, I'll just import the rows I'm interested in.
+# First I read jsut the fir colunm, then I look for the dates in need to read
 dates<-read.csv("household_power_consumption.txt", header=T, colClasses=c("character",rep("NULL",times=8)),sep=";")
 
 importdates<-c("1/2/2007","2/2/2007")
@@ -15,8 +15,9 @@ n.row<-sum(rows) # number of rows needed to import
 # by the skip paramter. 
 
 pow.cons<-read.csv("household_power_consumption.txt", sep=";", skip=f.row-1, nrows=n.row, 
-                   col.names=c("Date","Time","Global_active_power", "Global_reactive_power","Voltage", "Global_intensity", 
-                              "Sub_metering_1","Sub_metering_2","Sub_metering_3"),
+                   col.names=c("Date","Time","Global_active_power", "Global_reactive_power",
+                               "Voltage", "Global_intensity", "Sub_metering_1",
+                               "Sub_metering_2","Sub_metering_3"),
                    na.strings="?")
 
 # Change format to date & time
